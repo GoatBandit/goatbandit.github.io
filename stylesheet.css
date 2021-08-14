@@ -21,6 +21,13 @@ body
     overflow-x: scroll;
 }
 
+html, body, #container 
+{
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
     /* Main area */
     #container
     {
@@ -28,9 +35,7 @@ body
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        position: relative;
         padding: 4rem 2rem;
-        height: 100%; width: 100%;
 
         font-family: 'Comfortaa';
         text-align: center;
@@ -590,7 +595,7 @@ body
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        background: linear-gradient(to top, rgba(83, 148, 173, 0.774), rgba(218, 115, 115, 0.603));
+        background: linear-gradient(to top, rgba(138, 114, 190, 1), rgba(128, 210, 230, 1));
         position: fixed; top: 0; left: 0;
 
         z-index: -2;
@@ -801,29 +806,29 @@ body
 {
     0%
     {
-        background: rgba(83, 148, 173, 0.5);
+        background: rgba(102, 51, 153, 0.5);
         transform: translateY(0) rotate(0deg);
         border-radius: 0;
     }
 
     25%
     {
-        background: rgba(83, 148, 173, 0.25);
+        background: rgba(84.25, 78, 160.25, 0.25);
     }
 
     50%
     {
-        background: rgba(145, 128, 145, 0.25);
+        background: rgba(66.5, 105, 167.5, 0.25);
     }
 
     75%
     {
-        background: rgba(218, 115, 115, 0.15);
+        background: rgba(48.75, 132, 174.45, 0.15);
     }
 
     100%
     {
-        background: rgba(218, 115, 115, 0);
+        background: rgba(31, 159, 182, 0);
         transform: translateY(-1000px) rotate(720deg);
         border-radius: 75%;
     }

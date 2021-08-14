@@ -10,6 +10,7 @@
 *
 {
     font-family: 'Comfortaa';
+    color: white;
 }
 
 body 
@@ -118,13 +119,14 @@ canvas
     #linedown 
     {
         position: absolute;
+        height: 50px;
         opacity: 0;
         pointer-events: none;
     }
 
     .lang-panel 
     {
-        margin-top: 120px;
+        margin-top: 70px;
         position: absolute;
         width: 100%;
         text-align: center;

@@ -1,25 +1,17 @@
 let going = false;
 let currentEl = null;
-const lang_buttons = document.querySelectorAll('.lang-button');
+
+// Language buttons
+const languageButtons = document.querySelectorAll('.lang-button');
+
+// For language large box animation
 const lineDownSvg = document.querySelector('#linedown');
-const lineDown = lineDownSvg.firstElementChild;
-const left = document.querySelector('#rectleft');
-const right = document.querySelector('#rectright');
-const details = document.querySelector('#details');
+	const lineDown = lineDownSvg.firstElementChild;
 const mapping = document.querySelector('#mapping');
-const modal = document.querySelector('#modal');
+	const boxLeft = document.querySelector('#rectleft');
+	const boxRight = document.querySelector('#rectright');
 
-if (!window.localStorage.hideClickToLang) 
-{
-	mapping.langTimeout = setTimeout(() => 
-	{
-		mapping.innerText = '(click to view details)';
-		mapping.style.left = '50%';
-		mapping.style.opacity = '0.5';
-	}, 5000);
-}
-
-for (let button of lang_buttons) 
+for (let button of languageButtons) 
 {
 	button.addEventListener('click', () => 
 	{
@@ -33,16 +25,12 @@ for (let button of lang_buttons)
 		if (button.className.includes('active')) 
 		{
 			button.className = 'lang-button';
-			undoPath(0.5);
-			setTimeout(() => 
-			{
-				details.classList.remove('gone');
-			}, 250);
+			undoLargeBoxAnim(0.5);
 			
 			setTimeout(() => 
 			{
-				left.style.stroke = 'transparent';
-				right.style.stroke = 'transparent';
+				boxLeft.style.stroke = 'transparent';
+				boxRight.style.stroke = 'transparent';
 				going = false;
 			}, 500);
 			mapping.style.opacity = '0';
@@ -63,23 +51,19 @@ for (let button of lang_buttons)
 		lineDown.style.stroke = button.style.color;
 		lineDown.style.strokeDashoffset = '-100px';
 
-		// Place exit thingy
-		mapping.style.left = x + 'px';
-
-
 		// Do rectangle path
 		currentEl = button;
-		setUpPath();
-		undoPath(0.25);
-		setTimeout(doPath, 250, button.style.color);
+		setLargeBoxAnim();
+		undoLargeBoxAnim(0.25);
+		setTimeout(doLargeBoxAnim, 250, button.style.color);
 
-		details.classList.add('gone');
 		setTimeout(() => 
 		{
 			// Reset lineDown
 			lineDownSvg.style.opacity = '0';
 			lineDown.style.transition = 'initial';
 			lineDown.style.strokeDashoffset = '100px';
+
 			let panel = document.getElementById(button.getAttribute('data-panel'));
 			panel.classList.add('shown');
 			going = false;
@@ -107,102 +91,67 @@ for (let button of lang_buttons)
 	});
 }
 
-function setUpPath() 
+// Set the details for the opening animation for the language buttons
+function setLargeBoxAnim() 
 {
 	let x = (currentEl.offsetLeft + currentEl.clientWidth / 2);
 
 	x -= 20;
-	let h = window.innerHeight - left.parentElement.getBoundingClientRect().y - 20;
-	let x2 = window.innerWidth - x - 40;
+	let innerHeight = window.innerHeight - boxLeft.parentElement.getBoundingClientRect().y - 25;
+	let innerWidth = window.innerWidth - x - 45;
 
-	// Create svg paths
-	left.setAttribute('d', `M ${x + 2},0
-							C 100,0 40,0 40,0
-							40,0 0,0 0,40
-							0,40 0,60 0,${h - 40}
-							0,${h - 40} 0,${h} 40,${h}
-							93.75,${h} 100,${h} ${x2},${h}`);
-	right.setAttribute('d', `M -2,0
-							 C -2,0 ${x2 - 40},0 ${x2 - 40},0
-							 ${x2 - 40},0 ${x2},0 ${x2},40
-							 ${x2},40 ${x2},60 ${x2},${h - 40}
-							 ${x2},${h - 40} ${x2},${h} ${x2 - 40},${h}
-							 ${x2 - x + 40},${h} ${x2 - x},${h} ${x2 - x},${h}`);
-	right.style.transform = `translateX(${x + 1}px) translateY(1px)`;
+	// Create and set SVG pathing (x,y)
+	boxLeft.setAttribute('d', `M ${x + 2},-50
+							40,-50 									0,0 
+							0,40 									0,${innerHeight - 40}
+							40,${innerHeight} 100,${innerHeight} 	${innerWidth},${innerHeight}`);
+	boxRight.setAttribute('d', `M -2,-50
+							 ${innerWidth - 40},-50 				${innerWidth},0
+							 ${innerWidth},40 						${innerWidth},${innerHeight - 40}
+							 ${innerWidth - 40},${innerHeight} 		${innerWidth - x},${innerHeight}`);
+	boxRight.style.transform = `translateX(${x + 1}px) translateY(1px)`;
+	
 	// Reset everything
-	let len = left.getTotalLength();
-	left.style.transition = 'initial';
-	left.style.strokeDasharray = len;
-	right.style.transition = 'initial';
-	right.style.strokeDasharray = len;
+	let len = boxLeft.getTotalLength();
+	boxLeft.style.transition = 'initial';
+	boxLeft.style.strokeDasharray = len;
+	boxRight.style.transition = 'initial';
+	boxRight.style.strokeDasharray = len;
 
 }
 
-function doPath(color) 
-{
-	left.style.stroke = color;
-	right.style.stroke = color;
-
-	// Do animation
-	left.style.transition = 'stroke-dashoffset .75s ease-in-out';
-	right.style.transition = 'stroke-dashoffset .75s ease-in-out';
-	left.style.strokeDashoffset = '0';
-	right.style.strokeDashoffset = '0';
-}
-
-function undoPath(seconds) 
-{
-	let len = left.getTotalLength();
-	left.style.transition = `stroke-dashoffset ${seconds}s ease-in-out`;
-	right.style.transition = `stroke-dashoffset ${seconds}s ease-in-out`;
-	left.style.strokeDashoffset = len;
-	right.style.strokeDashoffset = len;
-
-	// Hide current panel
-	let shownPanel = document.querySelector('.lang-panel.shown');
-	if (shownPanel) 
+	// Do the opening animation for the language buttons
+	function doLargeBoxAnim(color) 
 	{
-		shownPanel.classList.remove('shown');
-		shownPanel.querySelectorAll('.projects>.proj').forEach(c => c.className = 'proj');
+		boxLeft.style.stroke = color;
+		boxRight.style.stroke = color;
+
+		// Do animation
+		boxLeft.style.transition = 'stroke-dashoffset .75s ease-in-out';
+		boxRight.style.transition = 'stroke-dashoffset .75s ease-in-out';
+		boxLeft.style.strokeDashoffset = '0';
+		boxRight.style.strokeDashoffset = '0';
 	}
-}
+
+		// Close the opening animation for the language buttons
+		function undoLargeBoxAnim(seconds) 
+		{
+			let len = boxLeft.getTotalLength();
+			boxLeft.style.transition = `stroke-dashoffset ${seconds}s ease-in-out`;
+			boxRight.style.transition = `stroke-dashoffset ${seconds}s ease-in-out`;
+			boxLeft.style.strokeDashoffset = len;
+			boxRight.style.strokeDashoffset = len;
+
+			// Hide current panel
+			let shownPanel = document.querySelector('.lang-panel.shown');
+			if (shownPanel) 
+			{
+				shownPanel.classList.remove('shown');
+				shownPanel.querySelectorAll('.projects>.proj').forEach(c => c.className = 'proj');
+			}
+		}
 
 let projs = document.querySelectorAll('.proj');
-
-for (let p of projs) 
-{
-	p.addEventListener('click', () => 
-	{
-		let data = ProjectData[p.getAttribute('data-proj')];
-		let color = p.parentElement.getAttribute('data-cat');
-		modal.children[0].innerHTML = data.title;
-		modal.children[1].innerHTML = data.description;
-		if (data.github) 
-		{
-			modal.children[2].style.display = 'block';
-			modal.children[2].firstElementChild.href = data.github;
-		} 
-		else 
-		{
-			modal.children[2].style.display = 'hidden';
-		}
-		modal.classList = 'shown';
-		modal.classList.add(color);
-		modal.openingElement = p;
-		var pattern = Trianglify
-		({
-			width: modal.clientWidth,
-			height: modal.clientHeight,
-			x_colors: ['#000000', '#1a1a1a', '#333333', '#4d4d4d', '#333333', '#1a1a1a', '#000000']
-		});
-		modal.style.background = 'url(' + pattern.png() + ')';
-	});
-}
-
-modal.querySelector('.close').addEventListener('click', () => {
-	modal.classList.remove('shown');
-})
-
 
 const projectDivs = document.querySelectorAll('.projects');
 
@@ -218,11 +167,16 @@ function updateProjectDivHeights()
 		bar.update();
 	}
 }
+
 let scrollbars = Array.from(document.querySelectorAll('.projects')).map(bar => new PerfectScrollbar(bar));
 window.addEventListener('resize', () => 
 {
 	if (currentEl)
-		setUpPath();
+	{
+		setLargeBoxAnim();
+	}
+	
 	updateProjectDivHeights();
 });
+
 updateProjectDivHeights();

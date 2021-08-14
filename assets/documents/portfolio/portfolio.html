@@ -11,117 +11,134 @@
 </head>
 
 <body>
-	<h1 id="intro">GoatBandit</h1>
-	<div id="main">
-		<h2>I'm a budding developer who uses</h2>
-		<h2>
-			<span class="lang-button" style="color:#7750A9;" data-panel="lang1">
-				C#
-				<span class="underline" style="background-color:#7750A9;"></span>
-			</span>,
-			<span class="lang-button" style="color: #8A72BE;" data-panel="lang2">
-				C++
-				<span class="underline" style="background-color:#8A72BE;"></span>
-			</span>,
-			<span class="lang-button" style="color: #80D2E6;" data-panel="lang3">
-				Flutter/Dart
-				<span class="underline" style="background-color:#80D2E6;"></span>
-			</span>, and
-			<span class="lang-button" style="color: #50BED2;" data-panel="others">
-				others
-				<span class="underline" style="background-color:#50BED2;"></span>
-			</span>.
-		</h2>
+	<div id="container">
+		<div id="Header">
+			<h1 id="intro">GoatBandit</h1>
+			<div id="main">
+				<h2>I'm a budding developer who uses</h2>
+				<h2>
+					<span class="lang-button" style="color:#7750A9;" data-panel="lang1">
+						C#
+						<span class="underline" style="background-color:#7750A9;"></span>
+					</span>,
+					<span class="lang-button" style="color: #8A72BE;" data-panel="lang2">
+						C++
+						<span class="underline" style="background-color:#8A72BE;"></span>
+					</span>,
+					<span class="lang-button" style="color: #80D2E6;" data-panel="lang3">
+						HTML5/CSS/JS
+						<span class="underline" style="background-color:#80D2E6;"></span>
+					</span>, and
+					<span class="lang-button" style="color: #50BED2;" data-panel="others">
+						others
+						<span class="underline" style="background-color:#50BED2;"></span>
+					</span>.
+				</h2>
+		</div> <!-- header -->
 
-		<svg id="linedown">
-			<line x1=0 y1=0 x2=0 y2=100>
-		</svg>
+		<div id="boxAnim">
+			<svg id="linedown">
+				<line x1=0 y1=0 x2=0 y2=100>
+			</svg>
+			
+			<span id="mapping">(click to view details)</span>
+			<svg id="rect">
+				<path id="rectleft" />
+				<path id="rectright" />
+			</svg>
+		</div> <!-- boxAnim -->
+			
+			<!-- NEW LANGUAGE SECTION -->
 
-		<span id="mapping">(click to view details)</span>
-		<svg id="rect">
-			<path id="rectleft" />
-			<path id="rectright" />
-		</svg>
+			<div id="lang1" class="lang-panel"> <!-- Language 1 (C#) -->
+				<h2>C#</h2>
+				<h3 class="lang-desc">
+					C# is my language of choice for <span>Game Development</span> through <span>Unity</span>. I've been using it since <span>08/2019</span> 
+					and I'd say I'm at a <span>proficient</span> level.
+				</h3>
 
-		<div id="lang1" class="lang-panel">
-			<h2>C#</h2>
-			<h3 class="lang-desc">
-                C# is my language of choice for <span>Game Development</span> through <span>Unity</span>. I've been using it since <span>08/2019</span> 
-                and I'd say I'm at a <span>proficient</span> level.
-            </h3>
+				<div class="projects lang1" data-cat="lang1">
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>1</h3>
+					</div>
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>2</h3>
+					</div>
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>3</h3>
+					</div>
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>4</h3>
+					</div>
+				</div> <!-- projects lang1 -->
+			</div> <!-- lang1 -->
+			
+			<!-- NEW LANGUAGE SECTION -->
 
-			<div class="projects lang1" data-cat="lang1">
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>1</h3>
-				</div>
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>2</h3>
-				</div>
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>3</h3>
-				</div>
-			</div>
+			<div id="lang2" class="lang-panel"> <!-- Language 2 (C++) -->
+				<h2>C++</h2>
+				<h3 class="lang-desc">
+					I've created a few games in a bare-bones game engine based around <span>OpenGL</span> whilst following strict restrictions. These restrictions taught me a lot about <span>professional 
+					coding standards</span> and <span>code readability</span>. Having started learning it <span>09/2019</span>, I'm still learning new things about it, but I'd say I'm at an 
+					<span>intermediate</span> level overall.
+				</h3>
+				<div class="projects lang2" data-cat="lang2">
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>1</h3>
+					</div>
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>2</h3>
+					</div>
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>3</h3>
+					</div>
+				</div> <!-- projects lang2 -->
+			</div> <!-- lang2 -->
+			
+			<!-- NEW LANGUAGE SECTION -->
+
+			<div id="lang3" class="lang-panel">  <!-- Language 1 (HTML5/CSS/JS) -->
+				<h2>HTML5/CSS/JS</h2>
+				<h3 class="lang-desc">
+					Flutter, Google's framework for creating cross-platform (<span>iOS</span> and <span>Android</span>) <span>mobile apps</span>, is my favorite language to work in.
+					Currently I'm working on an app intended for public release. Having started learning it <span>02/2021</span>, I'm still learning new things about it, but I'd say I'm at an 
+					<span>beginner</span> level overall.
+				</h3>
+				<div class="projects lang3" data-cat="lang3">
+					<div class="proj" style="background-image: url(../../images/Logo.png)">
+						<h3>1</h3>
+						<span class="text">
+							<h1>HIDDEN</h1>
+						</span>
+					</div>
+				</div> <!-- projects lang3 -->
+			</div> <!-- lang3 -->
+			
+			<!-- NEW LANGUAGE SECTION -->
+
+			<div id="others" class="lang-panel"> <!-- Language 1 (Other) -->
+				<h2>Other skills</h2>
+				<h3 class="lang-desc">I've also worked in <span>HTML5</span>, <span>CSS</span>, <span>JS</span> for front-end development, 
+					and a bit of <span>GDScript</span>.</h3>
+				<div class="projects others" data-cat="others">
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>1</h3>
+					</div>
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>2</h3>
+					</div>
+					<div class="proj" style="background-image: url(imageHere)">
+						<h3>3</h3>
+					</div>
+				</div> <!-- projects others -->
+			</div> <!-- lang4 -->
+
+			<div id="details">
+			</div> <!-- details -->
 		</div>
-        
-		<div id="lang2" class="lang-panel">
-			<h2>C++</h2>
-			<h3 class="lang-desc">
-                I've created a few games in a bare-bones game engine based around <span>OpenGL</span> whilst following strict restrictions. These restrictions taught me a lot about <span>professional 
-                coding standards</span> and <span>code readability</span>. Having started learning it <span>09/2019</span>, I'm still learning new things about it, but I'd say I'm at an 
-                <span>intermediate</span> level overall.
-			</h3>
-			<div class="projects lang2" data-cat="lang2">
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>1</h3>
-				</div>
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>2</h3>
-				</div>
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>3</h3>
-				</div>
-			</div>
-		</div>
 
-		<div id="lang3" class="lang-panel">
-			<h2>Flutter/Dart</h2>
-			<h3 class="lang-desc">
-                Flutter, Google's framework for creating cross-platform (<span>iOS</span> and <span>Android</span>) <span>mobile apps</span>, is my favorite language to work in.
-                Currently I'm working on an app intended for public release. Having started learning it <span>02/2021</span>, I'm still learning new things about it, but I'd say I'm at an 
-                <span>beginner</span> level overall.
-			</h3>
-			<div class="projects lang3" data-cat="lang3">
-				<div class="proj" style="background-image: url(../../images/Logo.png)">
-					<h3>1</h3>
-                    <span class="text">
-                        <h1>HIDDEN</h1>
-                    </span>
-				</div>
-			</div>
-		</div>
-
-		<div id="others" class="lang-panel">
-			<h2>Other skills</h2>
-			<h3 class="lang-desc">I've also worked in <span>HTML5</span>, <span>CSS</span>, <span>JS</span> for front-end development, 
-                and a bit of <span>GDScript</span>.</h3>
-			<div class="projects others" data-cat="others">
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>1</h3>
-				</div>
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>2</h3>
-				</div>
-				<div class="proj" style="background-image: url(imageHere)">
-					<h3>3</h3>
-				</div>
-			</div>
-		</div>
-
-		<div id="details">
-		</div>
-	</div>
-
-	<script type="text/javascript" src="../../js/portfolioIntro.js"></script>
-	<script type="text/javascript" src="../../js/portfolioLanguages.js"></script>
+		<script type="text/javascript" src="../../js/portfolioIntro.js"></script>
+		<script type="text/javascript" src="../../js/portfolioLanguages.js"></script>
+	</div> <!-- container -->
 </body>
 </html>
