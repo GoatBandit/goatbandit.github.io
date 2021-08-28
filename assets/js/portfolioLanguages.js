@@ -96,13 +96,15 @@ function setLargeBoxAnim()
 {
 	let x = (currentEl.offsetLeft + currentEl.clientWidth / 2);
 
-	x -= 20;
 	let innerHeight = window.innerHeight - boxLeft.parentElement.getBoundingClientRect().y - 25;
+
+	// THIS IS AN ISSUE. THIS CALCULATION CAUSES SMALLER SCREENS TO HAVE BOX OVERFLOW!
+	// I am not sure how to fix this as the box origin point changes based on the selected language location.
 	let innerWidth = window.innerWidth - x - 45;
 
 	// Create and set SVG pathing (x,y)
 	boxLeft.setAttribute('d', `M ${x + 2},-50
-							40,-50 									0,0 
+							40,-50 									0,0
 							0,40 									0,${innerHeight - 40}
 							40,${innerHeight} 100,${innerHeight} 	${innerWidth},${innerHeight}`);
 	boxRight.setAttribute('d', `M -2,-50

@@ -17,7 +17,8 @@ body
 {
 	margin: 0;
 	background: black;
-	overflow: hidden;
+    overflow-x: hidden;
+	overflow-y: auto;
 }
 
 h1 
@@ -66,6 +67,20 @@ a
 h2 
 {
 	text-align: center;
+	margin: 0;
+	cursor: default;
+}
+
+h3
+{
+    text-align: center;
+	margin-bottom: 0;
+	cursor: default;
+}
+
+p
+{
+    text-align: center;
 	margin: 0;
 	cursor: default;
 }
@@ -131,6 +146,7 @@ canvas
         width: 100%;
         text-align: center;
         opacity: 0;
+        pointer-events: none;
         
         z-index: -100;
 
@@ -140,7 +156,7 @@ canvas
         .lang-panel.shown 
         {
             opacity: 1;
-            visibility: visible;
+            pointer-events: all;
             z-index: 100;
         }
 
